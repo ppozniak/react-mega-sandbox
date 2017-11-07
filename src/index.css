@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 5rem 2rem;
+  font-family: sans-serif;
+}
+
+.done {
+  color: #ccc;
+  text-decoration: line-through;
+}
