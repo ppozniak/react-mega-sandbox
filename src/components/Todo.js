@@ -1,17 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-const Todo = ({ text, done, id, toggleTodo }) => (
-  <li className={ done ? 'done' : '' } onClick={ () => toggleTodo(id) }>{text} { text === 'virus' ? Error('AAAAA') : null } </li>
-);
+import { string, bool } from 'prop-types';
 
 Todo.propTypes = {
-  text: PropTypes.string.isRequired,
-  done: PropTypes.bool.isRequired,
+  text: string.isRequired,
+  done: bool.isRequired,
 };
 
-Todo.defaultProps = {
-  done: true
+function Todo({ text, done = true, id, toggleTodo }) {
+  const classname = done ? 'done' : '';
+  const validateIfNotVirus = text === 'virus' ? Error('AAAAA') : null;
+  const handleClick = (e) => toggleTodo(id);
+  return (
+    <li className={className} 
+        onClick={handleClick}>
+      {text} {validateIfNotVirus}
+    </li>
+  );
 }
-
-export default Todo;

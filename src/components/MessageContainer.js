@@ -1,22 +1,18 @@
 import React from 'react';
 
-const MessageContainer = (props) => {
+export default function MessageContainer({children}) {
   let inputRef = null;
 
-  function clearInput() {
-    inputRef.value = '';
-  }
+  const clearInput = () => inputRef.value = '';
+  const boundInput = (input) => inputRef = input;
 
   return (
     <div>
-      <strong>{props.children}</strong>
-
+      <strong>{children}</strong>
       <div>
-        <input defaultValue="no siemanko" type="text" ref={ input => inputRef = input } />
-        <button onClick={clearInput}>Clear that lol</button>
+        <input defaultValue="no siemanko" type="text" ref={boundInput} />
+        <button onClick={clearInput}>Clear that input</button>
       </div>
     </div>
   );
 };
-
-export default MessageContainer;

@@ -8,3 +8,9 @@ body {
   color: #ccc;
   text-decoration: line-through;
 }
+
+input {
+  display: block;
+  padding: 1rem;
+  width: 100%;
+}
