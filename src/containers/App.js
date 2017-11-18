@@ -9,7 +9,6 @@ import { Route, withRouter } from 'react-router-dom';
 
 
 class App extends Component {
-  
   render() {
     const spinnerXD = !this.props.image.fetching ? 'not busy' : 'OH YE LOADING';
     const receivedAt = this.props.image.receivedAt ? (<p>Received at: { this.props.image.receivedAt }</p>) : null;
