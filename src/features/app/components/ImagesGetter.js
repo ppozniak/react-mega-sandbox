@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unsplash from '../components/hoc/unsplash';
+import UnsplashHOC from './UnsplashHOC';
 
 class ImageGetter extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class ImageGetter extends Component {
   }
 }
 
-export default unsplash(
+export default UnsplashHOC(
   ImageGetter,
   'random/150x150'
 );

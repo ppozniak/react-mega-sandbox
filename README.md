@@ -1,3 +1,31 @@
+# React Mega Sandbox
+## Everything and nothing
+
+Big all-in-one of React
+Just a big pile of stuff I've learned, featuring:
+
+### Packages
+* react
+* redux
+* react-redux
+* react-router
+* redux-thunk
+* redux-form
+* semantic-ui-react
+* reselect
+* and probably more
+
+### Techniques
+* structure per feature with "public" index.js files
+
+
+### Main views
+* Todo list (WOW)
+* Bitcoin miner simulator (kind of clicking game)
+* Image fetcher + base64 decoding
+* Small "example" of HOCs (really bad one)
+
+## Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

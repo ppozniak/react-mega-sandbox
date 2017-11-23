@@ -6,8 +6,8 @@ Todo.propTypes = {
   done: bool.isRequired,
 };
 
-function Todo({ text, done = true, id, toggleTodo }) {
-  const classname = done ? 'done' : '';
+export default function Todo({ text, done = true, id, toggleTodo }) {
+  const className = done ? 'done' : '';
   const validateIfNotVirus = text === 'virus' ? Error('AAAAA') : null;
   const handleClick = (e) => toggleTodo(id);
   return (
