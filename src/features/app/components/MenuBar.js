@@ -18,6 +18,7 @@ const Menubar = () => (
     <MenuItem name="bitcoin miner" to="/bitcoin-miner" />
     <MenuItem name="image fetcher" to="/image" />
     <MenuItem name="higher order function" to="/hocs" />
+    <MenuItem name="account" to="/account" />
   </Menu>
 );
 

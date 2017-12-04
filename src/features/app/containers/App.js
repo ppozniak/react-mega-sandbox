@@ -5,9 +5,10 @@ import { Container, Header, Icon, Divider } from 'semantic-ui-react';
 import MenuBar from '../components/MenuBar';
 
 import ImagesGetter from '../components/ImagesGetter';
-import { TodoList } from '../../todos';
+import { TodosContainer } from '../../todos';
 import { BitcoinMiner } from '../../bitcoin-miner';
 import { FetchAndBase } from '../../fetch-and-base';
+import { Account } from '../../account';
 
 class App extends Component {
   render() {
@@ -29,9 +30,10 @@ class App extends Component {
           <Divider hidden/>
 
           <Route path="/bitcoin-miner" component={BitcoinMiner} />
-          <Route path="/todo/:filter?" component={TodoList} />
+          <Route path="/todo/:filter?" component={TodosContainer} />
           <Route path="/hocs" component={ImagesGetter} />
           <Route path="/image" component={FetchAndBase} />
+          <Route path="/account" component={Account} />
         </Container>
       </div>
     );

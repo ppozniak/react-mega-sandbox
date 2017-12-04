@@ -1,19 +1,24 @@
 import React from 'react';
-import { string, bool } from 'prop-types';
+import { string, bool, number, func } from 'prop-types';
+import { List } from 'semantic-ui-react';
 
 Todo.propTypes = {
-  text: string.isRequired,
+  name: string.isRequired,
+  description: string,
   done: bool.isRequired,
+  id: number.isRequired,
+  toggleTodo: func.isRequired
 };
 
-export default function Todo({ text, done = true, id, toggleTodo }) {
-  const className = done ? 'done' : '';
-  const validateIfNotVirus = text === 'virus' ? Error('AAAAA') : null;
+export default function Todo({ name, description = null, done = false, id, toggleTodo, ...rest }) {
+  const className = done ? 'done grey' : 'red';
   const handleClick = (e) => toggleTodo(id);
   return (
-    <li className={className} 
-        onClick={handleClick}>
-      {text} {validateIfNotVirus}
-    </li>
+    <List.Item className={className} 
+               onClick={handleClick}
+               {...rest}
+               >
+      <List.Content header={name} content={description} />
+    </List.Item>
   );
 }

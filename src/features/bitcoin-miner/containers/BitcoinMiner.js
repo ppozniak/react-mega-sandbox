@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Divider } from 'semantic-ui-react';
 import { mineBitcoins } from '../actions';
+import BuyBitcoinsForm from '../components/FormCustom';
 
 class BitcoinMiner extends Component {
   render() {
@@ -21,14 +22,8 @@ class BitcoinMiner extends Component {
         />
         <span className="tiny">Per click: {this.props.bitcoinsPerMine}</span>
 
-        <Button
-          content='Upgrade'
-          icon='plus'
-          label={{ as: 'a', basic: true, content: this.props.bitcoins }}
-          labelPosition='right'
-          onClick={mineBitcoins}
-          disabled={this.props.bitcoins < 100}
-        />
+        <Divider hidden />
+        <BuyBitcoinsForm />
       </div>
     );
   }

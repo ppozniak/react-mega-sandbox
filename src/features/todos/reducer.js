@@ -3,45 +3,66 @@ import {
   TOGGLE_TODO,
   CHANGE_FILTER,
   SHOW_ALL,
-  SHOW_DONE,
-  SHOW_UNDONE
 } from './constants';
+import { combineReducers } from 'redux';
 
-const initialState = [
-  {
-    id: 9000,
-    text: "test",
-    done: true,
-  },
-  {
-    id: 9001,
-    text: "test111",
-    done: false,
-  },
-  {
-    id: 9002,
-    text: "tagasdgsagdsagdas",
-    done: false,
-  },
-];
-let todosCounter = 0;
+import todo from './reducers/todo';
 
-const todos = (state = initialState, action) => {
-  const { type, text, id } = action;
-  switch (type) {
+const currentIdInitalState = 3;
+const currentId = (state = currentIdInitalState, action) => {
+  switch(action.type) {
     case ADD_TODO:
-      return [...state, { text, done: false, id: todosCounter++ }]
-    case TOGGLE_TODO:
-      return state.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo)
+      return state + 1;
     default:
       return state;
   }
 }
 
-export default todos;
+const allTodosInitialState = [0, 1, 2];
+const allTodos = (state = allTodosInitialState, action) => {
+  switch(action.type) {
+    case ADD_TODO:
+      return [...state, action.id];
+    default:
+      return state;
+  }
+}
+
+const todosByIdInitialState = {
+  0: {
+    id: 0,
+    name: 'Eat chicken',
+    description: 'Chickens are tasty : D',
+    done: true
+  },
+  1: {
+    id: 1,
+    name: 'Wash your hands',
+    done: false
+  },
+  2: {
+    id: 2,
+    name: 'WOLOLOLOOO',
+    description: 'WOWLOWLWOWLWOLOOO',
+    done: false
+  },
+};
+const todosById = (state = todosByIdInitialState, action) => {
+  const { type, id } = action;
+  switch (type) {
+    case ADD_TODO:
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        [id]: todo(state[id], action)
+      }
+    default:
+      return state;
+  }
+}
 
 // Visibility filter
-export const visibilityFilter = (state = SHOW_ALL, action) => {
+const visibilityFilter = (state = SHOW_ALL, action) => {
   switch (action.type) {
     case CHANGE_FILTER:
       return action.filter;
@@ -50,17 +71,10 @@ export const visibilityFilter = (state = SHOW_ALL, action) => {
   }
 }
 
-
-export const getVisibleTodos = (todos, filter) => {
-  switch (filter) {
-    case SHOW_ALL:
-      return todos;
-    case SHOW_DONE:
-      return todos.filter(todo => todo.done);
-    case SHOW_UNDONE:
-      return todos.filter(todo => !todo.done);
-    default:
-      return todos
-  }
-}
+export default combineReducers({
+  currentId,
+  allTodos,
+  todosById,
+  visibilityFilter
+});
 

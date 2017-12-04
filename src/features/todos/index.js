@@ -1,9 +1,9 @@
 import todos, { visibilityFilter, getVisibleTodos } from './reducer';
-import TodoList from './containers/TodoList';
+import TodosContainer from './containers/TodosContainer';
 
 export {
   todos,
   visibilityFilter,
-  TodoList,
+  TodosContainer,
   getVisibleTodos
 };

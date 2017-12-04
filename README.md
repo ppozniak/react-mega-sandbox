@@ -15,9 +15,9 @@ Just a big pile of stuff I've learned, featuring:
 * reselect
 * and probably more
 
-### Techniques
+### Main "features"
 * structure per feature with "public" index.js files
-
+* local storage state save/load
 
 ### Main views
 * Todo list (WOW)

@@ -6,8 +6,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 class FetchAndBase extends Component {
   state = {
-    inputVal: 'https://source.unsplash.com/random/500x500',
-    copied: "Copy"
+    inputVal: '',
+    exampleVal: 'https://source.unsplash.com/random/500x500',
+    copied: "Copy",
   }
 
   handleFAE = (e) => {
@@ -17,7 +18,7 @@ class FetchAndBase extends Component {
 
   handleExampleSource = (e) => {
     e.preventDefault();
-    this.setState({ inputVal: 'https://source.unsplash.com/random/500x500' });
+    this.setState({ inputVal: this.exampleVal });
   }
 
   handleCopy = (text, success) => {
@@ -31,19 +32,16 @@ class FetchAndBase extends Component {
     this.setState({ inputVal: e.target.value });
   }
 
-  Error = () => (
-    <Message negative attached header="Error" content={this.props.error} />
-  )
-
-
   render() {
+    const error = this.props.error ? <Message negative attached header="Error" content={this.props.error} /> : null;
     const receivedAt = this.props.receivedAt ? (<p>Received at: {this.props.receivedAt}</p>) : null;
     const image = this.props.base64 && !this.props.error ? (<img src={this.props.base64} alt="" />) : null;
+    // const disableExampleButton = this.inputVal === this.exampleVal ? 'disabled' : '';
 
     const output = this.props.base64 || this.props.error ? (
       <div>
-        <this.Error />
-        <Segment>
+        {error}
+        <Segment>9
           {receivedAt}
           {image}
           {this.props.base64 && !this.props.error ? (
@@ -68,6 +66,7 @@ class FetchAndBase extends Component {
           <Dimmer inverted active={this.props.fetching}>
             <Loader />
           </Dimmer>
+
           <form onSubmit={this.handleFAE}>
             <Input fluid
               action={{
@@ -78,7 +77,7 @@ class FetchAndBase extends Component {
               value={this.state.inputVal}
             />
           </form>
-          <Button secondary onClick={this.handleExampleSource} >Get example unsplash source</Button>
+          <Button secondary disabled="false" onClick={this.handleExampleSource} >Get example unsplash source</Button>
         </Segment>
       </div>
     );

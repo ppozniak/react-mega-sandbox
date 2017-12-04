@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import { changeFilter } from '../actions';
 import { Button } from 'semantic-ui-react';
 
-const FilterLink = ({ children, filter, currentFilter, changeFilter }) => (
-  <Button disabled={ currentFilter === filter }
-          onClick={() => changeFilter(filter)}
-  >{children}</Button>
-);
+function FilterLink({ children, filter, currentFilter, changeFilter }) {
+  return (
+    <Button disabled={ currentFilter === filter }
+            secondary={currentFilter === filter}
+            onClick={() => changeFilter(filter)}>
+      {children}
+    </Button>
+  );
+}
 
 FilterLink.propTypes = {
   children: PropTypes.string.isRequired,
@@ -16,7 +20,7 @@ FilterLink.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  currentFilter: state.visibilityFilter
+  currentFilter: state.todos.visibilityFilter
 });
 
 export default connect(
