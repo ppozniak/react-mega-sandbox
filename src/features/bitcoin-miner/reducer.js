@@ -1,10 +1,9 @@
-import {
-  MINE
-} from './constants';
+export const MINE = 'MINE';
+export const mineBitcoins = () => ({ type: MINE });
 
 const initialState = {
   amount: 0,
-  perMine: 1
+  perMine: 1,
 };
 
 const bitcoins = (state = initialState, action) => {
@@ -12,11 +11,11 @@ const bitcoins = (state = initialState, action) => {
     case MINE:
       return {
         ...state,
-        amount: state.amount + state.perMine
-      }
+        amount: state.amount + state.perMine,
+      };
     default:
       return state;
   }
-}
+};
 
 export default bitcoins;

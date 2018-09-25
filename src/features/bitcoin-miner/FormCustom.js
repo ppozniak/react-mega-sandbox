@@ -3,9 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { Form } from 'semantic-ui-react';
 
 class BuyBitcoinsForm extends Component {
-  handleSubmit = (values) => {
-    console.log(values)
-  }
+  handleSubmit = values => {
+    console.log(values);
+  };
 
   render() {
     return (
@@ -17,5 +17,5 @@ class BuyBitcoinsForm extends Component {
 }
 
 export default reduxForm({
-  form: 'buy-bitcoins'
+  form: 'buy-bitcoins',
 })(BuyBitcoinsForm);

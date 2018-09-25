@@ -7,7 +7,4 @@ import 'semantic-ui-css/semantic.min.css';
 
 const store = configureStore();
 
-ReactDOM.render(
-  <Root store={store} />, 
-  document.getElementById('root')
-);
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));

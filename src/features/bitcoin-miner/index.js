@@ -1,4 +1,4 @@
 import bitcoins from './reducer';
-import BitcoinMiner from './containers/BitcoinMiner';
+import BitcoinMiner from './BitcoinMiner';
 
-export { bitcoins, BitcoinMiner }
+export { bitcoins, BitcoinMiner };

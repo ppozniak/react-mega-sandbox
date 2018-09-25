@@ -1,13 +1,20 @@
-import { LOG_IN } from './constants';
+export const LOG_IN = 'account/log-in';
+export const LOG_OUT = 'account/log-out';
+
+export const logIn = username => ({ type: LOG_IN, payload: username });
+export const logOut = () => ({ type: LOG_OUT });
+
 const initialState = null;
 
-const username = (state = initialState, action) => {
-  switch(action.type) {
+const accountReducer = (state = initialState, action) => {
+  switch (action.type) {
     case LOG_IN:
-      return state = action.username
+      return action.payload;
+    case LOG_OUT:
+      return initialState;
     default:
       return state;
   }
-}
+};
 
-export default username;
+export default accountReducer;

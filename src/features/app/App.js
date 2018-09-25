@@ -2,32 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, NavLink } from 'react-router-dom';
 import { Container, Header, Icon, Divider } from 'semantic-ui-react';
-import MenuBar from '../components/MenuBar';
+import MenuBar from './MenuBar';
 
-import ImagesGetter from '../components/ImagesGetter';
-import { TodosContainer } from '../../todos';
-import { BitcoinMiner } from '../../bitcoin-miner';
-import { FetchAndBase } from '../../fetch-and-base';
-import { Account } from '../../account';
+import ImagesGetter from './ImagesGetter';
+import { TodosContainer } from '../todos';
+import { BitcoinMiner } from '../bitcoin-miner';
+import { FetchAndBase } from '../fetch-and-base';
+import { Account } from '../account';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Container>
-          <Divider hidden/>
+          <Divider hidden />
           <Header as={NavLink} to="/" size="huge">
             <Icon name="settings" />
             <Header.Content>
               React mega sandbox
-              <Header.Subheader>
-                Everything and nothing
-              </Header.Subheader>
+              <Header.Subheader>Everything and nothing</Header.Subheader>
             </Header.Content>
           </Header>
-          <Divider hidden/>
+          <Divider hidden />
           <MenuBar />
-          <Divider hidden/>
+          <Divider hidden />
 
           <Route path="/bitcoin-miner" component={BitcoinMiner} />
           <Route path="/todo/:filter?" component={TodosContainer} />
@@ -40,10 +38,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  image: state.image
-});
-
-export default withRouter(connect(
-  mapStateToProps
-)(App));
+export default withRouter(
+  connect(state => ({
+    image: state.image,
+  }))(App)
+);

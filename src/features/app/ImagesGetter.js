@@ -9,15 +9,14 @@ class ImageGetter extends Component {
   }
 
   render() {
-    return(
+    return (
       <div>
-        { this.props.images.map( (image, i) => <img src={image} key={i} alt="" /> ) }
+        {this.props.images.map((image, i) => (
+          <img src={image} key={i} alt="" />
+        ))}
       </div>
-     )
+    );
   }
 }
 
-export default UnsplashHOC(
-  ImageGetter,
-  'random/150x150'
-);
+export default UnsplashHOC(ImageGetter, 'random/150x150');

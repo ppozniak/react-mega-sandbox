@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
-import { array, func, string } from 'prop-types';
 import { connect } from 'react-redux';
-import { addTodo, toggleTodo, changeFilter } from '../actions';
+import PropTypes from 'prop-types';
 import { Grid, Segment, Header, Divider } from 'semantic-ui-react';
-import { getVisibleTodos } from '../selectors';
-import TodosList from '../components/TodosList';
-import AddTodoForm from '../components/AddTodoForm';
-import TodosFilters from '../components/TodosFilters';
-import TodosHeader from '../components/TodosHeader';
+import { addTodo, toggleTodo, changeFilter, getVisibleTodos } from './reducer';
+import TodosList from './TodosList';
+import AddTodoForm from './AddTodoForm';
+import TodosFilters from './TodosFilters';
+import TodosHeader from './TodosHeader';
 
 class TodosContainer extends Component {
   static propTypes = {
-    todos: array.isRequired,
-    currentFilter: string.isRequired,
-    toggleTodo: func.isRequired
-  }
+    todos: PropTypes.array.isRequired,
+    currentFilter: PropTypes.string.isRequired,
+    toggleTodo: PropTypes.func.isRequired,
+    addTodo: PropTypes.func.isRequired,
+    currentId: PropTypes.number.isRequired,
+  };
 
   addTodo = (name, description) => {
-    this.props.addTodo( name, description, this.props.currentId );
-  }
+    this.props.addTodo(name, description, this.props.currentId);
+  };
 
   currentFilterReadable = () => {
-    switch(this.props.currentFilter) {
-      case "SHOW_ALL":
+    switch (this.props.currentFilter) {
+      case 'SHOW_ALL':
         return 'showing all';
-      case "SHOW_DONE":
+      case 'SHOW_DONE':
         return 'showing done';
       case 'SHOW_UNDONE':
         return 'showing NOT done';
-      default: 
+      default:
         return 'all';
     }
-  }
+  };
 
   render() {
-    const {
-      todos,
-      toggleTodo,
-    } = this.props;
+    const { todos, toggleTodo } = this.props;
 
     return (
       <div>
@@ -59,24 +57,21 @@ class TodosContainer extends Component {
           </Grid.Row>
           <Grid.Row as={Segment}>
             <Grid.Column>
-                <AddTodoForm addTodo={this.addTodo} />
+              <AddTodoForm addTodo={this.addTodo} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  todos: getVisibleTodos(state),
-  currentId: state.todos.currentId,
-  currentFilter: state.todos.visibilityFilter,
-  // routerFilter: ownProps.match.params.filter
-});
-
 export default connect(
-  mapStateToProps,
+  state => ({
+    todos: getVisibleTodos(state),
+    currentId: state.todos.currentId,
+    currentFilter: state.todos.visibilityFilter,
+    // routerFilter: ownProps.match.params.filter
+  }),
   { addTodo, toggleTodo, changeFilter }
 )(TodosContainer);

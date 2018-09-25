@@ -7,17 +7,14 @@ Todo.propTypes = {
   description: string,
   done: bool.isRequired,
   id: number.isRequired,
-  toggleTodo: func.isRequired
+  toggleTodo: func.isRequired,
 };
 
 export default function Todo({ name, description = null, done = false, id, toggleTodo, ...rest }) {
   const className = done ? 'done grey' : 'red';
-  const handleClick = (e) => toggleTodo(id);
+  const handleClick = e => toggleTodo(id);
   return (
-    <List.Item className={className} 
-               onClick={handleClick}
-               {...rest}
-               >
+    <List.Item className={className} onClick={handleClick} {...rest}>
       <List.Content header={name} content={description} />
     </List.Item>
   );

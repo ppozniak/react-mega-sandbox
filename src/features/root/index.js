@@ -1,5 +1,1 @@
-import Root from './containers/Root';
-
-export {
-  Root
-};
+export { default as Root } from './Root';

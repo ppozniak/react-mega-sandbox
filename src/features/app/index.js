@@ -1,3 +1,1 @@
-import App from './containers/App';
-
-export { App };
+export { default as App } from './App';

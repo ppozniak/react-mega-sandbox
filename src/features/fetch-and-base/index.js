@@ -1,7 +1,4 @@
 import image from './reducer';
-import FetchAndBase from './containers/FetchAndBase';
+import FetchAndBase from './FetchAndBase';
 
-export {
-  image,
-  FetchAndBase
-}
+export { image, FetchAndBase };

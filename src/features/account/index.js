@@ -1,7 +1,2 @@
-import Account from './containers/Account';
-import username from './reducer';
-
-export {
-  Account,
-  username
-};
+export { default as Account } from './Account';
+export { default as accountReducer } from './reducer';
